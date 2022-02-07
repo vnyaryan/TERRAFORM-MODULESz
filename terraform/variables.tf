@@ -793,6 +793,17 @@ variable "diag_azurerm_storage_account_diagstorage_status" {
     type    = bool
     default = "false"
 }
+
+variable "diag_azurerm_storage_account_diagstorage_id" {
+    type    = string
+    
+}
+variable "diag_azurerm_log_analytics_workspace_workspace_id" {
+    type    = string
+    
+}
+
+
 #--------------------------------------------------------------
 #  LOG ANALYTICS WORKSPACE
 #--------------------------------------------------------------
