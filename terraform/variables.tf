@@ -7,6 +7,9 @@ variable "storage_account_resource_group_name" {
       type = string
 }
 
+variable "storage_account_resource_group_name01" {
+      type = string
+}
 variable "storage_account_resource_group_location" {
    type = string
 }
@@ -16,6 +19,10 @@ variable "storage_account_resource_group_tags" {
 }
 
 variable "storage_account_monitor_action_group_name" {
+    type = string
+}
+
+variable "storage_account_monitor_action_group_name01" {
     type = string
 }
 
@@ -35,6 +42,13 @@ variable "storage_account_name" {
     type = string
 }
 
+variable "storage_account_name01" {
+    type = string
+}
+
+
+
+
 variable "storage_account_tier" {
     type = string
 }
@@ -52,6 +66,10 @@ variable "storage_account_min_tls_version" {
 }
 
 variable "storage_account_monitor_diagnostic_setting_storage_name" {
+    type = string
+}
+
+variable "storage_account_monitor_diagnostic_setting_storage_name01" {
     type = string
 }
 

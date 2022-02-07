@@ -107,8 +107,10 @@
 #--------------------------------------------------------------
 
  storage_account_resource_group_name                                 = "g-storage-int-001"
+ storage_account_resource_group_name01                                = "torage-int-001"
  storage_account_resource_group_location                             = "westeurope"
  storage_account_name                                                = "tcrddataint001"
+ storage_account_name01                                              =  "tcrddataint0"
  storage_account_tier                                                = "Standard"
  storage_account_tier_replication_type                               = "LRS"
  storage_account_access_tier                                         = "Hot"
@@ -132,12 +134,14 @@
  }
 
  storage_account_monitor_action_group_name                            =  "g-email-storage-int-001"
+ storage_account_monitor_action_group_name01                          =  "mail-storage-int-001"
  storage_account_monitor_action_group_name_short_name                 =  "intstoact"
- 
+ storage_account_monitor_action_group_name_short_name01                 =  "istoact"
+
  storage_account_monitor_action_group_email_receiver_name             =  ["arunemail","vinayemail"]
  storage_account_monitor_action_group_email_receiver_email_address    =   ["arunachalam.sakthivel@daimler.com","ibm.arya@daimler.com"]
 
- storage_account_monitor_diagnostic_setting_storage_name                        =  "trdiagint001"
+ storage_account_monitor_diagnostic_setting_storage_name01                        =  "trdigint001"
  storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status   =   "true"
  storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days     =    "30"
 
@@ -154,7 +158,7 @@
  storage_account_azurerm_monitor_metriclaert01  =  "true"
  storage_account_azurerm_monitor_metriclaert02  =  "false"
  storage_account_azurerm_monitor_metriclaert03  =  "false"
- azurerm_storage_account_diagstorage_status = "false"
+ azurerm_storage_account_diagstorage_status = "true"
  /*
 #--------------------------------------------------------------
 #  ACR
