@@ -4,9 +4,9 @@
 # To Be Added - storage_account_min_tls_version                                     = "TLS1_0"
 # To Be Added - Need to move the logic to Storage Account with the flag to disable diagostic storage account which will not create diagnostic Storage Account
 #--------------------------------------------------------------
- diag_storage_account_resource_group_name                                  = "rg-stdiag-int-001"
+ diag_storage_account_resource_group_name                                  = "g-stdiag-int-001"
  diag_storage_account_resource_group_location                             = "westeurope"
- diag_storage_account_name                                = "stdiagint001"
+ diag_storage_account_name                                = "tdiagint001"
  diag_storage_account_tier                                = "Standard"
  diag_storage_account_tier_replication_type               = "LRS"
  
@@ -37,7 +37,7 @@
 # log_analytics_group_name           = "rg-log-int-001"
 # log_analytics_workspace_location   = "westeurope"
  log_analytics_workspace_sku        = "PerGB2018"
- log_analytics_workspace_name       = "log-crd-int-001"
+ log_analytics_workspace_name       = "og-crd-int-001"
  
 #--------------------------------------------------------------
 #  VNET
@@ -46,14 +46,12 @@
 # To Be Done - Need to pass a flag to create vnet or not
 #--------------------------------------------------------------
 
- virtual_network_resource_group_name     = "rg-vnet-int-001"
+ virtual_network_resource_group_name     = "g-vnet-int-001"
  virtual_network_resource_group_location = "westeurope"
- virtual_network_name                    = "vnet-int-westeurope-001"
- virtual_network_address_space           = ["15.0.0.0/8"]
+ virtual_network_name                    = "net-int-westeurope-001"
+ virtual_network_address_space           = ["172.20.0.0/16"]
 
- virtual_network_subnet_name             = "snet-db-int-westeurope-001"
- virtual_network_subnet_address_prefixes = ["15.0.0.0/16"]
- virtual_network_subnet_enforce_private_link_endpoint_network_policies = false
+
  
  virtual_network_resource_group_tags =  {
     "mbmAppName"              = "crd"
@@ -72,13 +70,13 @@
 	"mbmContinuityCritical"   = ""
  }
 
- virtual_network_monitor_action_group_name                         = "ag-email-vnet-int-001"
- virtual_network_monitor_action_group_name_short_name              = "intvnetact"
+ virtual_network_monitor_action_group_name                         = "g-email-vnet-int-001"
+ virtual_network_monitor_action_group_name_short_name              = "ntvnetact"
  
  virtual_network_monitor_action_group_email_receiver_name             =  ["arunemail","vinayemail"]
  virtual_network_monitor_action_group_email_receiver_email_address    =   ["arunachalam.sakthivel@daimler.com","ibm.arya@daimler.com"]
 
- virtual_network_monitor_diagnostic_setting_vnet_name = "vnetdiagint001"
+ virtual_network_monitor_diagnostic_setting_vnet_name = "netdiagint001"
  virtual_network_monitor_diagnostic_setting_metric_AllMetrics_status = "true"
  virtual_network_monitor_diagnostic_setting_metric_AllMetrics_days = "30"
 
@@ -93,7 +91,17 @@
 
  virtual_network_azurerm_monitor_metric_metriclaert1 = "false"
  virtual_network_azurerm_monitor_metric_metriclaert2 =  "true"
-  
+
+
+#--------------------------------------------------------------
+#  SUBNET
+#--------------------------------------------------------------
+
+ subnet_name             = "et-db-int-westeurope-001"
+ subnet_address_prefixes = ["172.20.0.0/24"]
+ subnet_enforce_private_link_endpoint_network_policies = false
+
+/*
 #--------------------------------------------------------------
 #  STORAGE ACCOUNT
 #--------------------------------------------------------------
@@ -146,7 +154,7 @@
  storage_account_azurerm_monitor_metriclaert01  =  "true"
  storage_account_azurerm_monitor_metriclaert02  =  "false"
  storage_account_azurerm_monitor_metriclaert03  =  "false"
- 
+ azurerm_storage_account_diagstorage_status = "false"
 #--------------------------------------------------------------
 #  ACR
 # Diagnostic Storage Account should be moved to main.tf
@@ -367,3 +375,5 @@
   kubernetes_cluster_azurerm_monitor_metriclaert02  = "true"
 
 
+
+*/
