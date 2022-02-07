@@ -1,19 +1,21 @@
-variable "virtual_network_subnet_name" {
+variable "subnet_name" {
     type = string
 }
 
-variable "virtual_network_subnet_address_prefixes" {
+variable "subnet_address_prefixes" {
     type = list
 }
 
-variable "virtual_network_subnet_enforce_private_link_endpoint_network_policies" {
+variable "subnet_enforce_private_link_endpoint_network_policies" {
     type = bool
 }
 
-variable "virtual_network_resource_group_name" {
+variable "subnet_virtual_network_name" {
     type = string
 }
 
-variable "virtual_network_name" {
+variable "subnet_virtual_network_name" {
     type = string
 }
+
+  

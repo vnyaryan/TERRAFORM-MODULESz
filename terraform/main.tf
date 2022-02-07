@@ -114,13 +114,14 @@ module "subnet" {
 source =  "./modules/azurerm_virtual_network"
 depends_on  = [module.vnet]
 
-virtual_network_resource_group_name  = module.vnet.virtual_network_resource_group
-virtual_network_name                 = module.vnet.virtual_network_nam
-virtual_network_subnet_name          = var.virtual_network_name
-virtual_network_subnet_address_prefixes                               = var.virtual_network_subnet_address_prefixes
-virtual_network_subnet_enforce_private_link_endpoint_network_policies = var.virtual_network_subnet_enforce_private_link_endpoint_network_policies
 
+  subnet_name                                           = var.subnet_name
+  subnet_resource_group_name                            = module.vnet.virtual_network_resource_group
+  subnet_virtual_network_name                           = module.vnet.virtual_network_name
+  subnet_address_prefixes                               = var.subnet_address_prefixes
+  subnet_enforce_private_link_endpoint_network_policies = var.subnet_enforce_private_link_endpoint_network_policies
 }
+
 /*
 #--------------------------------------------------------------
 # POSTGRESQL 

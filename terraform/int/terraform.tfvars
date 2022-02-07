@@ -97,9 +97,10 @@
 #  SUBNET
 #--------------------------------------------------------------
 
- virtual_network_subnet_name             = "snet-db-int-westeurope-001"
- virtual_network_subnet_address_prefixes = ["15.0.0.0/16"]
- virtual_network_subnet_enforce_private_link_endpoint_network_policies = false
+ subnet_name             = "snet-db-int-westeurope-001"
+ subnet_address_prefixes = ["15.0.0.0/16"]
+ subnet_enforce_private_link_endpoint_network_policies = false
+
 
 #--------------------------------------------------------------
 #  STORAGE ACCOUNT
