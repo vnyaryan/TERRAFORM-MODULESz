@@ -701,7 +701,7 @@ variable "diag_storage_account_resource_group_location" {
 }
 
 variable "diag_storage_account_resource_group_tags" {
-    type = string
+    type = map
 }
 
 
