@@ -51,9 +51,7 @@
  virtual_network_name                    = "vnet-int-westeurope-001"
  virtual_network_address_space           = ["15.0.0.0/8"]
 
- virtual_network_subnet_name             = "snet-db-int-westeurope-001"
- virtual_network_subnet_address_prefixes = ["15.0.0.0/16"]
- virtual_network_subnet_enforce_private_link_endpoint_network_policies = false
+
  
  virtual_network_resource_group_tags =  {
     "mbmAppName"              = "crd"
@@ -93,7 +91,17 @@
 
  virtual_network_azurerm_monitor_metric_metriclaert1 = "false"
  virtual_network_azurerm_monitor_metric_metriclaert2 =  "true"
-  
+
+
+#--------------------------------------------------------------
+#  SUBNET
+#--------------------------------------------------------------
+
+ subnet_name             = "snet-db-int-westeurope-001"
+ subnet_address_prefixes = ["15.0.0.0/16"]
+ subnet_enforce_private_link_endpoint_network_policies = false
+
+
 #--------------------------------------------------------------
 #  STORAGE ACCOUNT
 #--------------------------------------------------------------
@@ -146,7 +154,7 @@
  storage_account_azurerm_monitor_metriclaert01  =  "true"
  storage_account_azurerm_monitor_metriclaert02  =  "false"
  storage_account_azurerm_monitor_metriclaert03  =  "false"
- 
+ azurerm_storage_account_diagstorage_status = "false"
 #--------------------------------------------------------------
 #  ACR
 # Diagnostic Storage Account should be moved to main.tf
@@ -365,5 +373,6 @@
  
   kubernetes_cluster_azurerm_monitor_metriclaert01  = "false"
   kubernetes_cluster_azurerm_monitor_metriclaert02  = "true"
+
 
 
