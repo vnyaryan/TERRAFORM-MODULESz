@@ -180,7 +180,7 @@ variable "storage_account_azurerm_monitor_metriclaert03" {
     default = "false"
 }
 
-variable "azurerm_storage_account_diagstorage" {
+variable "azurerm_storage_account_diagstorage_status" {
     type   = bool
     default = "false"
 }
