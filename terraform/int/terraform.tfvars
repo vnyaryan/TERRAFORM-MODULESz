@@ -51,9 +51,7 @@
  virtual_network_name                    = "vnet-int-westeurope-001"
  virtual_network_address_space           = ["15.0.0.0/8"]
 
- virtual_network_subnet_name             = "snet-db-int-westeurope-001"
- virtual_network_subnet_address_prefixes = ["15.0.0.0/16"]
- virtual_network_subnet_enforce_private_link_endpoint_network_policies = false
+
  
  virtual_network_resource_group_tags =  {
     "mbmAppName"              = "crd"
@@ -93,7 +91,16 @@
 
  virtual_network_azurerm_monitor_metric_metriclaert1 = "false"
  virtual_network_azurerm_monitor_metric_metriclaert2 =  "true"
-  
+
+
+#--------------------------------------------------------------
+#  SUBNET
+#--------------------------------------------------------------
+
+ virtual_network_subnet_name             = "snet-db-int-westeurope-001"
+ virtual_network_subnet_address_prefixes = ["15.0.0.0/16"]
+ virtual_network_subnet_enforce_private_link_endpoint_network_policies = false
+
 #--------------------------------------------------------------
 #  STORAGE ACCOUNT
 #--------------------------------------------------------------

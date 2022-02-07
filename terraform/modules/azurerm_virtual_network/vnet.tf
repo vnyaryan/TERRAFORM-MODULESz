@@ -16,15 +16,7 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 
-#SUBNET
-resource "azurerm_subnet" "subnet" {
-  depends_on          = [azurerm_virtual_network.vnet]
-  name                 = var.virtual_network_subnet_name
-  resource_group_name  = var.virtual_network_resource_group_name
-  virtual_network_name = var.virtual_network_name
-  address_prefixes     = var.virtual_network_subnet_address_prefixes
-  enforce_private_link_endpoint_network_policies = var.virtual_network_subnet_enforce_private_link_endpoint_network_policies
-}
+
 
 # Azure Action Group for all metric
 resource "azurerm_monitor_action_group" "actiongroup" {

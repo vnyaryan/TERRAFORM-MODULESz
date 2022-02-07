@@ -80,8 +80,6 @@ virtual_network_name                   = var.virtual_network_name
 virtual_network_address_space          = var.virtual_network_address_space
 virtual_network_subnet_name            = var.virtual_network_subnet_name
 
-virtual_network_subnet_address_prefixes                               = var.virtual_network_subnet_address_prefixes
-virtual_network_subnet_enforce_private_link_endpoint_network_policies = var.virtual_network_subnet_enforce_private_link_endpoint_network_policies
 virtual_network_monitor_action_group_name                             = var.virtual_network_monitor_action_group_name
 
 virtual_network_monitor_action_group_name_short_name                   = var.virtual_network_monitor_action_group_name_short_name
@@ -107,6 +105,23 @@ virtual_network_azurerm_monitor_metric_metriclaert2 =  var.virtual_network_azure
 
 }
 
+
+#--------------------------------------------------------------
+# SUBNET
+#--------------------------------------------------------------
+
+module "subnet" {
+source =  "./modules/azurerm_virtual_network"
+depends_on  = [module.vnet]
+
+virtual_network_resource_group_name  = module.vnet.virtual_network_resource_group
+virtual_network_name                 = module.vnet.virtual_network_nam
+virtual_network_subnet_name          = var.virtual_network_name
+virtual_network_subnet_address_prefixes                               = var.virtual_network_subnet_address_prefixes
+virtual_network_subnet_enforce_private_link_endpoint_network_policies = var.virtual_network_subnet_enforce_private_link_endpoint_network_policies
+
+}
+/*
 #--------------------------------------------------------------
 # POSTGRESQL 
 #--------------------------------------------------------------
@@ -321,7 +336,7 @@ kubernetes_cluster_monitor_diagnostic_setting_metric_AllMetrics_days       = var
 azurerm_storage_account_diagstorage_id           =   module.diagstracc.storage_account_id
 azurerm_log_analytics_workspace_workspace_id     =   module.loganalytics.loganalytics_id
 
-kubernetes_cluster_vnet_subnet_id                =    module.vnet.virtual_subnet_id
+kubernetes_cluster_vnet_subnet_id                =    module.subnet.virtual_subnet_id
 kubernetes_cluster_identity                      =    var.kubernetes_cluster_identity
 
 kubernetes_cluster_monitor_diagnostic_setting_log_kube-apiserver_status     = var.kubernetes_cluster_monitor_diagnostic_setting_log_kube-apiserver_status
@@ -343,3 +358,4 @@ kubernetes_cluster_azurerm_monitor_metriclaert02  = var.kubernetes_cluster_azure
 azurerm_role_assignment_acr_id = module.acr.acr_id
 
 }
+*/
