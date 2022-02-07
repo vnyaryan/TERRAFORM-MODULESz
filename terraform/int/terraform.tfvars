@@ -4,13 +4,16 @@
 # To Be Added - storage_account_min_tls_version                                     = "TLS1_0"
 # To Be Added - Need to move the logic to Storage Account with the flag to disable diagostic storage account which will not create diagnostic Storage Account
 #--------------------------------------------------------------
- diag_storage_account_resource_group_name                                  = "rg-stdiag-int-001"
- diag_storage_account_resource_group_location                             = "westeurope"
- diag_storage_account_name                                = "stdiagint001"
- diag_storage_account_tier                                = "Standard"
- diag_storage_account_tier_replication_type               = "LRS"
  
-  diag_storage_account_resource_group_tags                                  = {
+ diag_storage_account_resource_group_name                                 = "rg-stdiag-int-001"
+ diag_storage_account_resource_group_location                             = "westeurope"
+ diag_storage_account_name                                                = "stdiagint001"
+ diag_storage_account_tier                                                = "Standard"
+ diag_storage_account_tier_replication_type                               = "LRS"
+ diag_storage_account_access_tier                                         = "Hot"
+ diag_storage_account_min_tls_version                                     = "TLS1_0"
+ 
+ diag_storage_account_resource_group_tags                                 = {
     "mbmAppName"              = "crd"
 	"mbmCloudSecResponsible"  = ""
     "mbmEnvironment"          = "INT"
@@ -27,6 +30,26 @@
 	"mbmContinuityCritical"   = ""
  }
 
+ diag_storage_account_monitor_action_group_name                            =  "ag-email-diagstorage-int-001"
+ diag_storage_account_monitor_action_group_name_short_name                 =  "intstoact"
+ 
+ diag_storage_account_monitor_action_group_email_receiver_name             =  ["arunemail","vinayemail"]
+ diag_storage_account_monitor_action_group_email_receiver_email_address    =   ["arunachalam.sakthivel@daimler.com","ibm.arya@daimler.com"]
+
+ 
+ diag_storage_account_azurerm_monitor_metric_alert_Availability_operator    =  "GreaterThan"
+ diag_storage_account_azurerm_monitor_metric_alert_Availability_threshold   =   "80"
+
+ diag_storage_account_azurerm_monitor_metric_alert_UsedCapacity_operator    = "GreaterThan"
+ diag_storage_account_azurerm_monitor_metric_alert_UsedCapacity_threshold   =  "80"
+
+ diag_storage_account_azurerm_monitor_metric_alert_Transactions_operator     = "GreaterThan"
+ diag_storage_account_azurerm_monitor_metric_alert_Transactions_threshold    =  "80"
+
+ 
+ diag_storage_account_azurerm_monitor_metriclaert01  =  "true"
+ diag_storage_account_azurerm_monitor_metriclaert02  =  "false"
+ diag_storage_account_azurerm_monitor_metriclaert03  =  "false"
 #-------------------------------------------------------------------------------------------------------------------
 # Log Analytics
 # To Be Added - log_analytics_group_name, log_analytics_workspace_location
