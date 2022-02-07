@@ -130,14 +130,15 @@ diag_storage_account_resource_group_tags  = {
 	"mbmAvailability"         = ""
 	"mbmContinuityCritical"   = ""
  }
-
+            
  storage_account_monitor_action_group_name                            =  "g-email-storage-int-001"
   storage_account_monitor_action_group_name_short_name                 =  "intstoact"
  
  storage_account_monitor_action_group_email_receiver_name             =  ["arunemail","vinayemail"]
  storage_account_monitor_action_group_email_receiver_email_address    =   ["arunachalam.sakthivel@daimler.com","ibm.arya@daimler.com"]
 
-  storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status   =   "true"
+storage_account_monitor_diagnostic_setting_storage_name  = "trdiagint001"
+ storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status   =   "true"
  storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days     =    "30"
 
  storage_account_azurerm_monitor_metric_alert_Availability_operator    =  "GreaterThan"
