@@ -231,7 +231,7 @@ variable "container_registry_azurerm_monitor_metriclaert02" {
     type = string
     
 }
-*/
+
 #--------------------------------------------------------------
 # VNET
 #--------------------------------------------------------------
@@ -674,7 +674,7 @@ variable "key_vault_name_azurerm_monitor_metriclaert01" {
     type = string
     
 }
-*/
+
 #--------------------------------------------------------------
 # DIAGNOSTIC STORAGE ACCOUNT  AND LOG ANALYTICS WORKSPACE
 #--------------------------------------------------------------
