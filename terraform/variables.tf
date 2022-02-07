@@ -701,20 +701,35 @@ variable "diag_storage_account_resource_group_location" {
 }
 
 variable "diag_storage_account_resource_group_tags" {
-    type = map
+    type = string
+}
+
+
+variable "diag_storage_account_monitor_action_group_name" {
+    type = string
+}
+
+variable "diag_storage_account_monitor_action_group_name_short_name" {
+    type = string
 }
 
 variable "diag_storage_account_name" {
     type = string
 }
 
-variable "diag_storage_account_tier" {
+variable "diag_azurerm_storage_account_diagstorage_id" {
     type = string
+    default = "false"
 }
 
-variable "diag_storage_account_tier_replication_type" {
+variable "diag_azurerm_log_analytics_workspace_workspace_id" {
     type = string
+    default = "false"
 }
+
+#--------------------------------------------------------------
+#  LOG ANALYTICS WORKSPACE
+#--------------------------------------------------------------
 
 variable "log_analytics_workspace_name" {
     type = string
@@ -726,7 +741,10 @@ variable "log_analytics_workspace_sku" {
    
 }
 
- # Authentication
+ #--------------------------------------------------------------
+#  AUTHENTICATION
+#--------------------------------------------------------------
+ 
  variable "azurerm_client_id" {
     type = string
    

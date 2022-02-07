@@ -30,24 +30,49 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {}
 
 #---------------------------------------------------------------------------------------
-# DIAGNOSTIC STORAGE ACCOUNT  AND LOG ANALYTICS WORKSPACE  
+# DIAGNOSTIC STORAGE ACCOUNT  
 #---------------------------------------------------------------------------------------
 
+
 module "diagstracc" {
-source =  "./modules/azurerm_diag_storage_account"
-
-diag_storage_account_resource_group_name      = var.diag_storage_account_resource_group_name 
-diag_storage_account_resource_group_location  = var.diag_storage_account_resource_group_location
-diag_storage_account_resource_group_tags      = var.diag_storage_account_resource_group_tags
+source =  "./modules/azurerm_storage_account"
 
 
-diag_storage_account_name                   = var.diag_storage_account_name
-diag_storage_account_tier                   = var.diag_storage_account_tier 
-diag_storage_account_tier_replication_type  = var.diag_storage_account_tier_replication_type
+ storage_account_resource_group_name         = var.diag_storage_account_resource_group_name
+ storage_account_resource_group_location     = var.diag_storage_account_resource_group_location
+ storage_account_resource_group_tags         = var.diag_storage_account_resource_group_tags
+
+ storage_account_monitor_action_group_name                         = var.diag_storage_account_monitor_action_group_name
+ storage_account_monitor_action_group_name_short_name              = var.diag_storage_account_monitor_action_group_name_short_name
+ storage_account_monitor_action_group_email_receiver_name          = var.storage_account_monitor_action_group_email_receiver_name
+ storage_account_monitor_action_group_email_receiver_email_address = var.storage_account_monitor_action_group_email_receiver_email_address
 
 
+ storage_account_name                  = var.diag_storage_account_name
+ storage_account_tier                  = var.storage_account_tier
+ storage_account_tier_replication_type = var.storage_account_tier_replication_type
+ storage_account_access_tier           = var.storage_account_access_tier
+ storage_account_min_tls_version       = var.storage_account_min_tls_version
 
-}
+ azurerm_storage_account_diagstorage_id           =  var.diag_azurerm_storage_account_diagstorage_id
+ azurerm_log_analytics_workspace_workspace_id     =  var.diag_azurerm_log_analytics_workspace_workspace_id
+
+ storage_account_monitor_diagnostic_setting_storage_name                        = var.storage_account_monitor_diagnostic_setting_storage_name
+ storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status   = var.storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status
+ storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days     = var.storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days
+ storage_account_azurerm_monitor_metric_alert_Availability_operator             = var.storage_account_azurerm_monitor_metric_alert_Availability_operator
+ storage_account_azurerm_monitor_metric_alert_Availability_threshold            = var.storage_account_azurerm_monitor_metric_alert_Availability_threshold
+ storage_account_azurerm_monitor_metric_alert_UsedCapacity_operator             = var.storage_account_azurerm_monitor_metric_alert_UsedCapacity_operator
+ storage_account_azurerm_monitor_metric_alert_UsedCapacity_threshold            = var.storage_account_azurerm_monitor_metric_alert_UsedCapacity_threshold
+ storage_account_azurerm_monitor_metric_alert_Transactions_operator             = var.storage_account_azurerm_monitor_metric_alert_Transactions_operator
+ storage_account_azurerm_monitor_metric_alert_Transactions_threshold            = var.storage_account_azurerm_monitor_metric_alert_Transactions_threshold
+
+ storage_account_azurerm_monitor_metriclaert01  =  var.storage_account_azurerm_monitor_metriclaert01
+ storage_account_azurerm_monitor_metriclaert02  =  var.storage_account_azurerm_monitor_metriclaert02
+ storage_account_azurerm_monitor_metriclaert03  =  var.storage_account_azurerm_monitor_metriclaert03
+ azurerm_storage_account_diagstorage_status     =   var.azurerm_storage_account_diagstorage_status
+
+ }
 #---------------------------------------------------------------------------------------
 #  LOG ANALYTICS WORKSPACE 
 #---------------------------------------------------------------------------------------
@@ -56,8 +81,8 @@ module "loganalytics" {
 source =  "./modules/azurerm_log_analytics_workspace"
 depends_on  = [module.diagstracc]
     log_analytics_workspace_name                = var.log_analytics_workspace_name
-    log_analytics_workspace_location            = module.diagstracc.resource_group_location
-    log_analytics_workspace_resource_group_name = module.diagstracc.resource_group_name
+    log_analytics_workspace_location            = var.diag_storage_account_resource_group_location
+    log_analytics_workspace_resource_group_name = var.diag_storage_account_resource_group_name
     log_analytics_workspace_sku                 = var.log_analytics_workspace_sku
     log_analytics_workspace_tags                = var.diag_storage_account_resource_group_tags
 }

@@ -1,16 +1,14 @@
 #--------------------------------------------------------------
 # Diagnostic Storage Account
-# To Be Added - storage_account_access_tier                                         = "Hot"
-# To Be Added - storage_account_min_tls_version                                     = "TLS1_0"
-# To Be Added - Need to move the logic to Storage Account with the flag to disable diagostic storage account which will not create diagnostic Storage Account
 #--------------------------------------------------------------
- diag_storage_account_resource_group_name                                  = "g-stdiag-int-001"
- diag_storage_account_resource_group_location                             = "westeurope"
- diag_storage_account_name                                = "tdiagint001"
- diag_storage_account_tier                                = "Standard"
- diag_storage_account_tier_replication_type               = "LRS"
- 
-  diag_storage_account_resource_group_tags                                  = {
+diag_storage_account_resource_group_name                    = "torage-int-001"
+diag_storage_account_resource_group_location                =  "westeurope"
+diag_storage_account_monitor_action_group_name              =  "mail-storage-int-001"
+diag_storage_account_monitor_action_group_name_short_name   =  "istoact"
+diag_storage_account_name                                   =  "tcrddataint0"
+                              
+diag_storage_account_resource_group_tags  = {
+
     "mbmAppName"              = "crd"
 	"mbmCloudSecResponsible"  = ""
     "mbmEnvironment"          = "INT"
@@ -26,6 +24,8 @@
 	"mbmAvailability"         = ""
 	"mbmContinuityCritical"   = ""
  }
+ 
+ 
 
 #-------------------------------------------------------------------------------------------------------------------
 # Log Analytics
@@ -34,8 +34,7 @@
 # Can move the log analytics to seperate module
 #- AS log analytics is fundamental module so we are using  Dianostic storage account  resource group  and location
 #---------------------------------------------------------------------------------------------------------------------
-# log_analytics_group_name           = "rg-log-int-001"
-# log_analytics_workspace_location   = "westeurope"
+
  log_analytics_workspace_sku        = "PerGB2018"
  log_analytics_workspace_name       = "og-crd-int-001"
  
@@ -107,7 +106,6 @@
 #--------------------------------------------------------------
 
  storage_account_resource_group_name                                 = "g-storage-int-001"
- storage_account_resource_group_name01                                = "torage-int-001"
  storage_account_resource_group_location                             = "westeurope"
  storage_account_name                                                = "tcrddataint001"
  storage_account_name01                                              =  "tcrddataint0"
@@ -134,15 +132,12 @@
  }
 
  storage_account_monitor_action_group_name                            =  "g-email-storage-int-001"
- storage_account_monitor_action_group_name01                          =  "mail-storage-int-001"
- storage_account_monitor_action_group_name_short_name                 =  "intstoact"
- storage_account_monitor_action_group_name_short_name01                 =  "istoact"
-
+  storage_account_monitor_action_group_name_short_name                 =  "intstoact"
+ 
  storage_account_monitor_action_group_email_receiver_name             =  ["arunemail","vinayemail"]
  storage_account_monitor_action_group_email_receiver_email_address    =   ["arunachalam.sakthivel@daimler.com","ibm.arya@daimler.com"]
 
- storage_account_monitor_diagnostic_setting_storage_name01                        =  "trdigint001"
- storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status   =   "true"
+  storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status   =   "true"
  storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days     =    "30"
 
  storage_account_azurerm_monitor_metric_alert_Availability_operator    =  "GreaterThan"
