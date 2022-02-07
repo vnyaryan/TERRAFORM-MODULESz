@@ -7,9 +7,7 @@ variable "storage_account_resource_group_name" {
       type = string
 }
 
-variable "storage_account_resource_group_name01" {
-      type = string
-}
+
 variable "storage_account_resource_group_location" {
    type = string
 }
@@ -22,9 +20,7 @@ variable "storage_account_monitor_action_group_name" {
     type = string
 }
 
-variable "storage_account_monitor_action_group_name01" {
-    type = string
-}
+
 
 variable "storage_account_monitor_action_group_name_short_name" {
     type = string
@@ -39,10 +35,6 @@ variable "storage_account_monitor_action_group_email_receiver_email_address" {
 }
 
 variable "storage_account_name" {
-    type = string
-}
-
-variable "storage_account_name01" {
     type = string
 }
 
@@ -69,9 +61,6 @@ variable "storage_account_monitor_diagnostic_setting_storage_name" {
     type = string
 }
 
-variable "storage_account_monitor_diagnostic_setting_storage_name01" {
-    type = string
-}
 
 variable "storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status" {
     type = string
@@ -126,10 +115,7 @@ variable "azurerm_storage_account_diagstorage_status" {
     default = "false"
 }
 
-variable "azurerm_storage_account_diagstorage_status01" {
-    type    = bool
-    default = "true"
-}
+
 /*
 #--------------------------------------------------------------
 #  ACR
