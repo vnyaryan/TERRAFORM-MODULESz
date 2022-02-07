@@ -242,6 +242,9 @@ variable "virtual_network_name" {
     type = string
 }
 
+variable "virtual_network_address_space" {
+    type = list
+}
 
 variable "virtual_network_monitor_action_group_name" {
     type = string
