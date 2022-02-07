@@ -159,6 +159,7 @@
  storage_account_azurerm_monitor_metriclaert02  =  "false"
  storage_account_azurerm_monitor_metriclaert03  =  "false"
  azurerm_storage_account_diagstorage_status = "true"
+ azurerm_storage_account_diagstorage_status01 = "false"
  /*
 #--------------------------------------------------------------
 #  ACR

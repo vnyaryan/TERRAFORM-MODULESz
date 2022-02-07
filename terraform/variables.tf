@@ -125,6 +125,11 @@ variable "azurerm_storage_account_diagstorage_status" {
     type    = bool
     default = "false"
 }
+
+variable "azurerm_storage_account_diagstorage_status01" {
+    type    = bool
+    default = "true"
+}
 /*
 #--------------------------------------------------------------
 #  ACR

@@ -259,7 +259,7 @@ depends_on  =  [module.storageaccount]
 storage_account_azurerm_monitor_metriclaert01  =  var.storage_account_azurerm_monitor_metriclaert01
 storage_account_azurerm_monitor_metriclaert02  =  var.storage_account_azurerm_monitor_metriclaert02
 storage_account_azurerm_monitor_metriclaert03  =  var.storage_account_azurerm_monitor_metriclaert03
-azurerm_storage_account_diagstorage_status           = var.azurerm_storage_account_diagstorage_status
+azurerm_storage_account_diagstorage_status           = var.azurerm_storage_account_diagstorage_status01
  }
 /*
 #--------------------------------------------------------------
