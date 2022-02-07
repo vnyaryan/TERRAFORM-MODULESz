@@ -106,4 +106,3 @@ resource "azurerm_monitor_metric_alert" "metriclaert2" {
     action_group_id = azurerm_monitor_action_group.actiongroup.id
   }
 }
-*/

@@ -78,7 +78,7 @@ virtual_network_resource_group_tags     = var.virtual_network_resource_group_tag
 
 virtual_network_name                   = var.virtual_network_name
 virtual_network_address_space          = var.virtual_network_address_space
-virtual_network_subnet_name            = var.virtual_network_subnet_name
+
 
 virtual_network_monitor_action_group_name                             = var.virtual_network_monitor_action_group_name
 
