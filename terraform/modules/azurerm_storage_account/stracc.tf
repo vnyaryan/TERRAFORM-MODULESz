@@ -36,6 +36,7 @@ resource "azurerm_monitor_action_group" "actiongroup" {
 # Diagnostic setting  to Send logs/metrics  to Log Analytics workspace  and   Archive to a storage account
 resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
   depends_on                  = [azurerm_storage_account.storage ]
+  count                       = var.azurerm_storage_account_diagstorage_status ? 1 : 0
   name                        = var.storage_account_monitor_diagnostic_setting_storage_name
   target_resource_id          = azurerm_storage_account.storage.id
   log_analytics_workspace_id  = var.azurerm_log_analytics_workspace_workspace_id

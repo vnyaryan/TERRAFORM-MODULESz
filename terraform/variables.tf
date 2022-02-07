@@ -102,6 +102,11 @@ variable "storage_account_azurerm_monitor_metriclaert03" {
     
 }
 
+variable "azurerm_storage_account_diagstorage" {
+    type    = bool
+    default = "false"
+}
+
 #--------------------------------------------------------------
 #  ACR
 #--------------------------------------------------------------
