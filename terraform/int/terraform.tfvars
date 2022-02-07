@@ -155,6 +155,7 @@
  storage_account_azurerm_monitor_metriclaert02  =  "false"
  storage_account_azurerm_monitor_metriclaert03  =  "false"
  azurerm_storage_account_diagstorage_status = "false"
+ /*
 #--------------------------------------------------------------
 #  ACR
 # Diagnostic Storage Account should be moved to main.tf
