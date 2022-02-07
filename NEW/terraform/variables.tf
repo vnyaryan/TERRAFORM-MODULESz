@@ -1,4 +1,3 @@
-
 #--------------------------------------------------------------
 #  STORAGE ACCOUNT
 #--------------------------------------------------------------
@@ -6,7 +5,6 @@
 variable "storage_account_resource_group_name" {
       type = string
 }
-
 
 variable "storage_account_resource_group_location" {
    type = string
@@ -19,8 +17,6 @@ variable "storage_account_resource_group_tags" {
 variable "storage_account_monitor_action_group_name" {
     type = string
 }
-
-
 
 variable "storage_account_monitor_action_group_name_short_name" {
     type = string
@@ -37,9 +33,6 @@ variable "storage_account_monitor_action_group_email_receiver_email_address" {
 variable "storage_account_name" {
     type = string
 }
-
-
-
 
 variable "storage_account_tier" {
     type = string
@@ -60,7 +53,6 @@ variable "storage_account_min_tls_version" {
 variable "storage_account_monitor_diagnostic_setting_storage_name" {
     type = string
 }
-
 
 variable "storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status" {
     type = string
@@ -110,13 +102,6 @@ variable "storage_account_azurerm_monitor_metriclaert03" {
     
 }
 
-variable "azurerm_storage_account_diagstorage_status" {
-    type    = bool
-    default = "true"
-}
-
-
-/*
 #--------------------------------------------------------------
 #  ACR
 #--------------------------------------------------------------
@@ -231,7 +216,7 @@ variable "container_registry_azurerm_monitor_metriclaert02" {
     type = string
     
 }
-*/
+
 #--------------------------------------------------------------
 # VNET
 #--------------------------------------------------------------
@@ -254,6 +239,18 @@ variable "virtual_network_name" {
 
 variable "virtual_network_address_space" {
     type = list
+}
+
+variable "virtual_network_subnet_name" {
+    type = string
+}
+
+variable "virtual_network_subnet_address_prefixes" {
+    type = list
+}
+
+variable "virtual_network_subnet_enforce_private_link_endpoint_network_policies" {
+    type = bool
 }
 
 variable "virtual_network_monitor_action_group_name" {
@@ -318,26 +315,6 @@ variable "virtual_network_azurerm_monitor_metric_metriclaert2" {
 }
 
 
-#--------------------------------------------------------------
-# SUBNET
-#--------------------------------------------------------------
-
-variable "subnet_name" {
-    type = string
-}
-
-variable "subnet_address_prefixes" {
-    type = list
-}
-
-variable "subnet_enforce_private_link_endpoint_network_policies" {
-    type = bool
-}
-
-
-
-
-  /*
 #--------------------------------------------------------------
 # POSTGRESQL DB
 #--------------------------------------------------------------
@@ -674,48 +651,25 @@ variable "key_vault_name_azurerm_monitor_metriclaert01" {
     type = string
     
 }
-*/
+
 #--------------------------------------------------------------
 # DIAGNOSTIC STORAGE ACCOUNT  AND LOG ANALYTICS WORKSPACE
 #--------------------------------------------------------------
-
- variable "diag_storage_account_resource_group_name" {
-      type = string
+variable "diag_storage_account_resource_group_name" {
+    type = string
 }
 
-
 variable "diag_storage_account_resource_group_location" {
-   type = string
+    type = string
 }
 
 variable "diag_storage_account_resource_group_tags" {
     type = map
 }
 
-variable "diag_storage_account_monitor_action_group_name" {
-    type = string
-}
-
-
-
-variable "diag_storage_account_monitor_action_group_name_short_name" {
-    type = string
-}
-
-variable "diag_storage_account_monitor_action_group_email_receiver_name" {
-    type = list
-}
-
-variable "diag_storage_account_monitor_action_group_email_receiver_email_address" {
-    type = list
-}
-
 variable "diag_storage_account_name" {
     type = string
 }
-
-
-
 
 variable "diag_storage_account_tier" {
     type = string
@@ -724,78 +678,6 @@ variable "diag_storage_account_tier" {
 variable "diag_storage_account_tier_replication_type" {
     type = string
 }
-
-variable "diag_storage_account_access_tier" {
-    type = string
-}
-
-variable "diag_storage_account_min_tls_version" {
-    type = string
-}
-
-variable "diag_storage_account_monitor_diagnostic_setting_storage_name" {
-    type = string
-	default = "false"
-}
-
-
-variable "diag_storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status" {
-    type = string
-	default = "false"
-}
-
-variable "diag_storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days" {
-    type = string
-	default = "false"
-}
-
-variable "diag_storage_account_azurerm_monitor_metric_alert_Availability_operator" {
-    type = string
-}
-
-
-variable "diag_storage_account_azurerm_monitor_metric_alert_Availability_threshold" {
-    type = string
-}
-
-variable "diag_storage_account_azurerm_monitor_metric_alert_UsedCapacity_operator" {
-    type = string
-}
-
-variable "diag_storage_account_azurerm_monitor_metric_alert_UsedCapacity_threshold" {
-    type = string
-}
-
-variable "diag_storage_account_azurerm_monitor_metric_alert_Transactions_operator" {
-    type = string
-}
-
-variable "diag_storage_account_azurerm_monitor_metric_alert_Transactions_threshold" {
-    type = string
-}
-
-variable "diag_storage_account_azurerm_monitor_metriclaert01" {
-    type = string
-    
-}
-
-variable "diag_storage_account_azurerm_monitor_metriclaert02" {
-    type = string
-    
-}
-
-variable "diag_storage_account_azurerm_monitor_metriclaert03" {
-    type = string
-    
-}
-
-variable "azurerm_storage_account_diagstorage_status" {
-    type    = bool
-    default = "false"
-}
-#--------------------------------------------------------------
-#  LOG ANALYTICS WORKSPACE
-#--------------------------------------------------------------
 
 variable "log_analytics_workspace_name" {
     type = string
@@ -807,10 +689,7 @@ variable "log_analytics_workspace_sku" {
    
 }
 
- #--------------------------------------------------------------
-#  AUTHENTICATION
-#--------------------------------------------------------------
- 
+ # Authentication
  variable "azurerm_client_id" {
     type = string
    

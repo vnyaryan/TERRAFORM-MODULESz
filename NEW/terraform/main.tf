@@ -30,49 +30,24 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {}
 
 #---------------------------------------------------------------------------------------
-# DIAGNOSTIC STORAGE ACCOUNT  
+# DIAGNOSTIC STORAGE ACCOUNT  AND LOG ANALYTICS WORKSPACE  
 #---------------------------------------------------------------------------------------
 
-
 module "diagstracc" {
-source =  "./modules/azurerm_storage_account"
+source =  "./modules/azurerm_diag_storage_account"
 
-storage_account_resource_group_name          = var.diag_storage_account_resource_group_name
-storage_account_resource_group_location      = var.diag_storage_account_resource_group_location
-storage_account_resource_group_tags          = var.diag_storage_account_resource_group_tags
-
- storage_account_monitor_action_group_name                         = var.diag_storage_account_monitor_action_group_name
- storage_account_monitor_action_group_name_short_name              = var.diag_storage_account_monitor_action_group_name_short_name
- storage_account_monitor_action_group_email_receiver_name          = var.diag_storage_account_monitor_action_group_email_receiver_name
- storage_account_monitor_action_group_email_receiver_email_address = var.diag_storage_account_monitor_action_group_email_receiver_email_address
+diag_storage_account_resource_group_name      = var.diag_storage_account_resource_group_name 
+diag_storage_account_resource_group_location  = var.diag_storage_account_resource_group_location
+diag_storage_account_resource_group_tags      = var.diag_storage_account_resource_group_tags
 
 
- storage_account_name                  = var.diag_storage_account_name
- storage_account_tier                  = var.diag_storage_account_tier
- storage_account_tier_replication_type = var.diag_storage_account_tier_replication_type
- storage_account_access_tier           = var.diag_storage_account_access_tier
- storage_account_min_tls_version       = var.diag_storage_account_min_tls_version
+diag_storage_account_name                   = var.diag_storage_account_name
+diag_storage_account_tier                   = var.diag_storage_account_tier 
+diag_storage_account_tier_replication_type  = var.diag_storage_account_tier_replication_type
 
- azurerm_storage_account_diagstorage_id           =  var.diag_azurerm_storage_account_diagstorage_id
- azurerm_log_analytics_workspace_workspace_id     =  var.diag_azurerm_log_analytics_workspace_workspace_id
 
- storage_account_monitor_diagnostic_setting_storage_name                        = var.diag_storage_account_monitor_diagnostic_setting_storage_name
- storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status   = var.diag_storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status
- storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days     = var.diag_storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days
- storage_account_azurerm_monitor_metric_alert_Availability_operator             = var.diag_storage_account_azurerm_monitor_metric_alert_Availability_operator
- storage_account_azurerm_monitor_metric_alert_Availability_threshold            = var.diag_storage_account_azurerm_monitor_metric_alert_Availability_threshold
- storage_account_azurerm_monitor_metric_alert_UsedCapacity_operator             = var.diag_storage_account_azurerm_monitor_metric_alert_UsedCapacity_operator
- storage_account_azurerm_monitor_metric_alert_UsedCapacity_threshold            = var.diag_storage_account_azurerm_monitor_metric_alert_UsedCapacity_threshold
- storage_account_azurerm_monitor_metric_alert_Transactions_operator             = var.diag_storage_account_azurerm_monitor_metric_alert_Transactions_operator
- storage_account_azurerm_monitor_metric_alert_Transactions_threshold            = var.diag_storage_account_azurerm_monitor_metric_alert_Transactions_threshold
-
- storage_account_azurerm_monitor_metriclaert01  =  var.diag_storage_account_azurerm_monitor_metriclaert01
- storage_account_azurerm_monitor_metriclaert02  =  var.diag_storage_account_azurerm_monitor_metriclaert02
- storage_account_azurerm_monitor_metriclaert03  =  var.diag_storage_account_azurerm_monitor_metriclaert03
- azurerm_storage_account_diagstorage_status     =   var.diag_azurerm_storage_account_diagstorage_status
 
 }
-
 #---------------------------------------------------------------------------------------
 #  LOG ANALYTICS WORKSPACE 
 #---------------------------------------------------------------------------------------
@@ -81,8 +56,8 @@ module "loganalytics" {
 source =  "./modules/azurerm_log_analytics_workspace"
 depends_on  = [module.diagstracc]
     log_analytics_workspace_name                = var.log_analytics_workspace_name
-    log_analytics_workspace_location            = var.diag_storage_account_resource_group_location
-    log_analytics_workspace_resource_group_name = var.diag_storage_account_resource_group_name
+    log_analytics_workspace_location            = module.diagstracc.resource_group_location
+    log_analytics_workspace_resource_group_name = module.diagstracc.resource_group_name
     log_analytics_workspace_sku                 = var.log_analytics_workspace_sku
     log_analytics_workspace_tags                = var.diag_storage_account_resource_group_tags
 }
@@ -103,8 +78,10 @@ virtual_network_resource_group_tags     = var.virtual_network_resource_group_tag
 
 virtual_network_name                   = var.virtual_network_name
 virtual_network_address_space          = var.virtual_network_address_space
+virtual_network_subnet_name            = var.virtual_network_subnet_name
 
-
+virtual_network_subnet_address_prefixes                               = var.virtual_network_subnet_address_prefixes
+virtual_network_subnet_enforce_private_link_endpoint_network_policies = var.virtual_network_subnet_enforce_private_link_endpoint_network_policies
 virtual_network_monitor_action_group_name                             = var.virtual_network_monitor_action_group_name
 
 virtual_network_monitor_action_group_name_short_name                   = var.virtual_network_monitor_action_group_name_short_name
@@ -130,24 +107,6 @@ virtual_network_azurerm_monitor_metric_metriclaert2 =  var.virtual_network_azure
 
 }
 
-
-#--------------------------------------------------------------
-# SUBNET
-#--------------------------------------------------------------
-
-module "subnet" {
-source =  "./modules/azurerm_subnet"
-depends_on  = [module.vnet]
-
-
-  subnet_name                                           = var.subnet_name
-  subnet_resource_group_name                            = module.vnet.virtual_network_resource_group
-  subnet_virtual_network_name                           = module.vnet.virtual_network_name
-  subnet_address_prefixes                               = var.subnet_address_prefixes
-  subnet_enforce_private_link_endpoint_network_policies = var.subnet_enforce_private_link_endpoint_network_policies
-}
-
-/*
 #--------------------------------------------------------------
 # POSTGRESQL 
 #--------------------------------------------------------------
@@ -199,7 +158,7 @@ postgresql_server_azurerm_monitor_metriclaert03  = var.postgresql_server_azurerm
 
 
 }
-*/
+
 #--------------------------------------------------------------
 # STORAGE ACCOUNT 
 #--------------------------------------------------------------
@@ -240,51 +199,7 @@ depends_on  =  [module.postgresql]
 storage_account_azurerm_monitor_metriclaert01  =  var.storage_account_azurerm_monitor_metriclaert01
 storage_account_azurerm_monitor_metriclaert02  =  var.storage_account_azurerm_monitor_metriclaert02
 storage_account_azurerm_monitor_metriclaert03  =  var.storage_account_azurerm_monitor_metriclaert03
-azurerm_storage_account_diagstorage_status           = var.azurerm_storage_account_diagstorage_status
- }
 
-/*
- #--------------------------------------------------------------
-# STORAGE ACCOUNT 
-#--------------------------------------------------------------
-
-module "storageaccount1" {
-source =  "./modules/azurerm_storage_account"
-depends_on  =  [module.storageaccount]
-
- storage_account_resource_group_name         = var.storage_account_resource_group_name01
- storage_account_resource_group_location     = var.storage_account_resource_group_location
- storage_account_resource_group_tags         = var.storage_account_resource_group_tags
-
- storage_account_monitor_action_group_name                         = var.storage_account_monitor_action_group_name01
- storage_account_monitor_action_group_name_short_name              = var.storage_account_monitor_action_group_name_short_name01
- storage_account_monitor_action_group_email_receiver_name          = var.storage_account_monitor_action_group_email_receiver_name
- storage_account_monitor_action_group_email_receiver_email_address = var.storage_account_monitor_action_group_email_receiver_email_address
-
-
- storage_account_name                  = var.storage_account_name01
- storage_account_tier                  = var.storage_account_tier
- storage_account_tier_replication_type = var.storage_account_tier_replication_type
- storage_account_access_tier           = var.storage_account_access_tier
- storage_account_min_tls_version       = var.storage_account_min_tls_version
-
- azurerm_storage_account_diagstorage_id           =   module.diagstracc.storage_account_id
- azurerm_log_analytics_workspace_workspace_id     =   module.loganalytics.loganalytics_id
-
- storage_account_monitor_diagnostic_setting_storage_name                        = var.storage_account_monitor_diagnostic_setting_storage_name01
- storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status   = var.storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status
- storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days     = var.storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days
- storage_account_azurerm_monitor_metric_alert_Availability_operator             = var.storage_account_azurerm_monitor_metric_alert_Availability_operator
- storage_account_azurerm_monitor_metric_alert_Availability_threshold            = var.storage_account_azurerm_monitor_metric_alert_Availability_threshold
- storage_account_azurerm_monitor_metric_alert_UsedCapacity_operator             = var.storage_account_azurerm_monitor_metric_alert_UsedCapacity_operator
- storage_account_azurerm_monitor_metric_alert_UsedCapacity_threshold            = var.storage_account_azurerm_monitor_metric_alert_UsedCapacity_threshold
- storage_account_azurerm_monitor_metric_alert_Transactions_operator             = var.storage_account_azurerm_monitor_metric_alert_Transactions_operator
- storage_account_azurerm_monitor_metric_alert_Transactions_threshold            = var.storage_account_azurerm_monitor_metric_alert_Transactions_threshold
-
-storage_account_azurerm_monitor_metriclaert01  =  var.storage_account_azurerm_monitor_metriclaert01
-storage_account_azurerm_monitor_metriclaert02  =  var.storage_account_azurerm_monitor_metriclaert02
-storage_account_azurerm_monitor_metriclaert03  =  var.storage_account_azurerm_monitor_metriclaert03
-azurerm_storage_account_diagstorage_status           = var.azurerm_storage_account_diagstorage_status01
  }
 
 #--------------------------------------------------------------
@@ -406,7 +321,7 @@ kubernetes_cluster_monitor_diagnostic_setting_metric_AllMetrics_days       = var
 azurerm_storage_account_diagstorage_id           =   module.diagstracc.storage_account_id
 azurerm_log_analytics_workspace_workspace_id     =   module.loganalytics.loganalytics_id
 
-kubernetes_cluster_vnet_subnet_id                =    module.subnet.virtual_subnet_id
+kubernetes_cluster_vnet_subnet_id                =    module.vnet.virtual_subnet_id
 kubernetes_cluster_identity                      =    var.kubernetes_cluster_identity
 
 kubernetes_cluster_monitor_diagnostic_setting_log_kube-apiserver_status     = var.kubernetes_cluster_monitor_diagnostic_setting_log_kube-apiserver_status
@@ -428,4 +343,3 @@ kubernetes_cluster_azurerm_monitor_metriclaert02  = var.kubernetes_cluster_azure
 azurerm_role_assignment_acr_id = module.acr.acr_id
 
 }
-*/
