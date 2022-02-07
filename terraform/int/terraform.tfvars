@@ -101,14 +101,14 @@
  subnet_address_prefixes = ["172.20.0.0/24"]
  subnet_enforce_private_link_endpoint_network_policies = false
 
-/*
+
 #--------------------------------------------------------------
 #  STORAGE ACCOUNT
 #--------------------------------------------------------------
 
- storage_account_resource_group_name                                 = "rg-storage-int-001"
+ storage_account_resource_group_name                                 = "g-storage-int-001"
  storage_account_resource_group_location                             = "westeurope"
- storage_account_name                                                = "stcrddataint001"
+ storage_account_name                                                = "tcrddataint001"
  storage_account_tier                                                = "Standard"
  storage_account_tier_replication_type                               = "LRS"
  storage_account_access_tier                                         = "Hot"
@@ -131,13 +131,13 @@
 	"mbmContinuityCritical"   = ""
  }
 
- storage_account_monitor_action_group_name                            =  "ag-email-storage-int-001"
+ storage_account_monitor_action_group_name                            =  "g-email-storage-int-001"
  storage_account_monitor_action_group_name_short_name                 =  "intstoact"
  
  storage_account_monitor_action_group_email_receiver_name             =  ["arunemail","vinayemail"]
  storage_account_monitor_action_group_email_receiver_email_address    =   ["arunachalam.sakthivel@daimler.com","ibm.arya@daimler.com"]
 
- storage_account_monitor_diagnostic_setting_storage_name                        =  "strdiagint001"
+ storage_account_monitor_diagnostic_setting_storage_name                        =  "trdiagint001"
  storage_account_monitor_diagnostic_setting_storage_metric_Transaction_status   =   "true"
  storage_account_monitor_diagnostic_setting_storage_metric_Transaction_days     =    "30"
 

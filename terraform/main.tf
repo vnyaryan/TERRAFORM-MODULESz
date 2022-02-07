@@ -174,7 +174,7 @@ postgresql_server_azurerm_monitor_metriclaert03  = var.postgresql_server_azurerm
 
 
 }
-
+*/
 #--------------------------------------------------------------
 # STORAGE ACCOUNT 
 #--------------------------------------------------------------
@@ -217,7 +217,7 @@ storage_account_azurerm_monitor_metriclaert02  =  var.storage_account_azurerm_mo
 storage_account_azurerm_monitor_metriclaert03  =  var.storage_account_azurerm_monitor_metriclaert03
 azurerm_storage_account_diagstorage_status           = var.azurerm_storage_account_diagstorage_status
  }
-
+/*
 #--------------------------------------------------------------
 # ACR
 #--------------------------------------------------------------
