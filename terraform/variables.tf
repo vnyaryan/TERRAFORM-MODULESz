@@ -789,7 +789,7 @@ variable "diag_storage_account_azurerm_monitor_metriclaert03" {
     
 }
 
-variable "azurerm_storage_account_diagstorage_status" {
+variable "diag_azurerm_storage_account_diagstorage_status" {
     type    = bool
     default = "false"
 }
